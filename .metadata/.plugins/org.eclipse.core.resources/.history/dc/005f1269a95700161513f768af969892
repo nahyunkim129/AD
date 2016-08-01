@@ -1,0 +1,16 @@
+package pcalculation;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
+public class reservoirSampling {
+
+    public static void main(String[] args) throws FileNotFoundException, IOException{
+        Sampler mySampler = new Sampler();
+        List<String> myList = mySampler.sampler(10);
+        for(int index = 0;index<myList.size();index++){
+            System.out.println(myList.get(index));
+        }
+    }
+}

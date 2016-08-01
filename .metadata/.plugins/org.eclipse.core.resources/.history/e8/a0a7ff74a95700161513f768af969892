@@ -1,0 +1,17 @@
+package pcalculation;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
+public class reservoirSampling {
+
+    public static void main(String[] args) throws FileNotFoundException, IOException{
+    	String filename = "C:/NaHyun/Research/AD/Data/mmsePats_allGenes.csv";
+        Sampler mySampler = new Sampler();
+        List<String> myList = mySampler.sampler(51,filename);
+        for(int index = 0; index<myList.size(); index++){
+            System.out.println(myList.get(index));
+        }
+    }
+}

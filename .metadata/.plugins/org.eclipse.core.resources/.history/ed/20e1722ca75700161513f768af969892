@@ -1,0 +1,20 @@
+package pcalculation;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+public class PearsonCorr {
+
+	public static void main(String[] args) throws IOException {		
+		LoadData load = new LoadData();
+		String alzFile = "C:/NaHyun/Research/AD/Data/mmsePats_ADGenes.csv";
+		double[][] alzData = load.Load(alzFile);
+		
+		System.out.println("\nLoaded Coexpression matrix : ");
+		for (double[] coex_row : alzData) {
+            System.out.println(Arrays.toString(coex_row));
+        }
+        
+	}
+
+}

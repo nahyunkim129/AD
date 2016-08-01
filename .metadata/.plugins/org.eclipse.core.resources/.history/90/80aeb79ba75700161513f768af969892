@@ -1,0 +1,33 @@
+package pcalculation;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
+
+public class PearsonCorr {
+
+	public static void main(String[] args) throws IOException {
+		DataPrep prep = new DataPrep();
+		String alzADFile = "C:/NaHyun/Research/AD/Data/mmsePats_ADGenes.csv";
+		String alzRandomFile = "C:/NaHyun/Research/AD/Data/mmsePats_allGenes.csv";
+
+		System.out.println("Loading AD data...");
+		double[][] alzData = prep.load(alzADFile);
+		PearsonsCorrelation alzPearsonPC = new PearsonsCorrelation(alzData);
+		RealMatrix alzPearsonRM = alzPearsonPC.computeCorrelationMatrix(alzData);
+		double[][] alzPearson = alzPearsonRM.getData();
+		int alzSize = alzPearson.length;
+		System.out.println("\n" + alzSize + "x" + alzSize + " Pearson Correlation Matrix : ");
+		for (double[] eachGene : alzPearson) {
+			for (int i = 0; i < eachGene.length; i++) {
+				System.out.print(eachGene[i] + " ");
+				if (i == eachGene.length - 1)
+					System.out.println();
+			}
+		}
+
+	}
+
+}
