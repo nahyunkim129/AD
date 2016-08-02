@@ -1,0 +1,44 @@
+package pcalculation;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
+
+public class PValCal {
+
+	public static void main(String[] args) throws IOException {
+		DataPrep prep = new DataPrep();
+		PCCalc pCorr = new PCCalc();
+		int numRand = 51;
+		
+		String alzADFile = "Data/mmsePats_ADGenes.csv";
+		String alzRandomFile = "Data/mmsePats_allGenes.csv";
+
+		System.out.println("Loading AD data...");
+		double[][] alzData = prep.load(alzADFile);
+		double[][] alzPC = pCorr.calPC(alzData).pCorr;
+		double[][] alzPCStdErr = pCorr.calPC(alzData).pCorrSTDErr;
+		double[][] alzPCpVal = pCorr.calPC(alzData).pCorrpVal;
+		prep.printDoubleArr(alzPC,"Pearson Correlation for AD ");
+		prep.printDoubleArr(alzPCStdErr,"Standard Error of Pearson Correlation for AD ");
+		prep.printDoubleArr(alzPCpVal,"p-value of Pearson Correlation for AD ");
+		
+		
+		//Pick 51 random rows and get Pearson correlation				
+		System.out.println("Loading random gene data...");
+		double[][] randomData = prep.randomLoad(alzRandomFile,numRand);
+		double[][] randomPC = pCorr.calPC(randomData).pCorr;
+		double[][] randomPCStdErr = pCorr.calPC(randomData).pCorrSTDErr;
+		double[][] randompVal = pCorr.calPC(randomData).pCorrpVal;
+		prep.printDoubleArr(randomPC,"Pearson Correlation for random genes ");
+		prep.printDoubleArr(randomPCStdErr,"Standard Error of Pearson Correlation for random genes ");
+		prep.printDoubleArr(randompVal,"p-value of Pearson Correlation for random genes ");
+		
+		//prep.printDoubleArr(randomPCM,"Pearson Correlation for random genes ");
+		
+
+	}
+
+}

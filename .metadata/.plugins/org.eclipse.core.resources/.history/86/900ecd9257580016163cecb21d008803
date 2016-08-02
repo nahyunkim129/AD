@@ -21,7 +21,7 @@ public class DataPrep {
 	
 	void printDoubleArr(double[][] arr,String type){
 		int size = arr.length;
-		System.out.println(size + "x" + size + " "+type+" matrix : ");
+		System.out.println("\n" + size + "x" + size + " "+type+" Matrix : ");
 		for (double[] eachDouble : arr) {
 			for (int i = 0; i < eachDouble.length; i++) {
 				System.out.print(eachDouble[i] + " ");

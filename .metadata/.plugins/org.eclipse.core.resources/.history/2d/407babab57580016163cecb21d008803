@@ -1,0 +1,33 @@
+package pcalculation;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
+
+public class PearsonCorr {
+
+	public static void main(String[] args) throws IOException {
+		DataPrep prep = new DataPrep();
+		PCCalc pCorr = new PCCalc();
+		int numRand = 51;
+		
+		String alzADFile = "Data/mmsePats_ADGenes.csv";
+		String alzRandomFile = "Data/mmsePats_allGenes.csv";
+
+		System.out.println("Loading AD data...");
+		double[][] alzData = prep.load(alzADFile);
+		double[][] alzPCM = pCorr.calPC(alzData);
+		prep.printDoubleArr(alzPCM,"Pearson Correlation for AD ");
+		
+		//Pick 51 random rows and get Pearson correlation				
+		System.out.println("Loading random gene data...");
+		double[][] randomData = prep.randomLoad(alzRandomFile,numRand);
+		double[][] randomPCM = pCorr.calPC(randomData);
+		prep.printDoubleArr(randomPCM,"Pearson Correlation for random genes ");
+		
+
+	}
+
+}

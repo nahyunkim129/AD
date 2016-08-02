@@ -1,0 +1,16 @@
+package pcalculation;
+
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
+
+public class PCCalc {
+	PCCalc(){		
+	}
+	
+	double[][] calPC(double[][] matrix){
+		PearsonsCorrelation PearsonPC = new PearsonsCorrelation(matrix);
+		RealMatrix PearsonRM = PearsonPC.computeCorrelationMatrix(matrix);
+		return PearsonRM.getData();		
+	}
+
+}
